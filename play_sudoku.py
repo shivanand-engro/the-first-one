@@ -56,7 +56,49 @@ def check_win(board, player):
 #     [board[2][0], board[1][1], board[0][2]],
 #   ]
 #   for condition in win_conditions:
+#     if sum(condition) == 2:
+      
+def available_moves(board):
+    return [(i, j) for i in range(3) for j in range(3) if board[i, j] == 0]
 
+# Minimax algorithm
+def minimax(board, depth, is_maximizing):
+    winner = check_win(board, -1)
+    if winner != 0:
+        return winner * (10 - depth)
+    if not available_moves(board):
+        return 0
+    
+    if is_maximizing:
+        max_eval = -np.inf
+        for move in available_moves(board):
+            board[move] = -1
+            eval = minimax(board, depth + 1, False)
+            board[move] = 0
+            max_eval = max(max_eval, eval)
+        return max_eval
+    else:
+        min_eval = np.inf
+        for move in available_moves(board):
+            board[move] = 1
+            eval = minimax(board, depth + 1, True)
+            board[move] = 0
+            min_eval = min(min_eval, eval)
+        return min_eval
+
+# Function to find the best move for the bot
+def best_move(board):
+    best_val = -np.inf
+    move = None
+    for m in available_moves(board):
+        board[m] = -1
+        move_val = minimax(board, 0, False)
+        board[m] = 0
+        if move_val > best_val:
+            best_val = move_val
+            move = m
+    return move
+###########################################################################
 def play_game():
   board = np.zeros((3, 3), dtype=int)
   player = 1
@@ -76,7 +118,8 @@ def play_game():
       i = 2 - (k-1)//3
       # print(i,j)
     else:
-      i, j = random.choice(valid_moves)
+    #   i, j = random.choice(valid_moves)
+      i, j = best_move(board)
     if((i,j) in valid_moves):
       make_move(board, player, i, j)
       if check_win(board, player):

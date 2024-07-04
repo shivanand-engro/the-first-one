@@ -3,6 +3,7 @@
 import numpy as np
 import random
 from IPython.display import clear_output
+import sys
 
 superscripts = [
     'jj',
@@ -74,15 +75,26 @@ def best_move(board):
     if check is not None: return check
 
     return random.choice(available_moves(board))
+
+def get_user_choice():
+    print("Do you Want to play first?")
+    while True:
+        choice = input("Press enter for 'Yes' and Type any key for 'No' and '0' to END the game:").strip().lower()
+        if choice == '':
+            return 1
+        elif choice == '0':
+           sys.exit()
+        else:
+           return -1
 ###########################################################################
 
-def play_game(player):
+def play_game():
   print("--------------------------------------------------")
   print("New Game")
   board = np.zeros((3, 3), dtype=int)
   pboard = np.zeros((3, 3), dtype=int)
   count = 0
-#   player = 1
+  player = get_user_choice()
   i,j = -1,-1
   while True:
     if(player==1):print_board(pboard)
@@ -109,4 +121,4 @@ def play_game(player):
     else:
       print("Invalid move")
 
-while True :play_game(-1)
+while True :play_game()

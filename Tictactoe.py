@@ -73,6 +73,7 @@ def best_move(board):
 
     check = block(board, 1)
     if check is not None: return check
+    
 
     return random.choice(available_moves(board))
 

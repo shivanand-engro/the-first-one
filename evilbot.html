@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Bot Icon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .big-icon {
+            font-size: 5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="iconContainer">
+        <i id="botIcon" class="fas fa-robot big-icon"></i>
+    </div>
+    <div id="iconContainer">
+        <i id="botIcon" class="fas fa-skull-crossbones big-icon"></i>
+    </div>
+    <button id="toggleButton">Toggle Bot</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script>
+        const botIcon = document.getElementById('botIcon');
+        const toggleButton = document.getElementById('toggleButton');
+        let isEvil = true;
+
+        toggleButton.addEventListener('click', function() {
+            console.log(isEvil)
+            if (isEvil) {
+                botIcon.classList.remove('fa-skull-crossbones'); // Replace with normal bot icon class
+                botIcon.classList.add('fa-robot');
+            } else {
+                botIcon.classList.remove('fa-robot'); // Replace with evil bot icon class
+                botIcon.classList.add('fa-skull-crossbones');
+            }
+            isEvil = !isEvil; // Toggle state
+        });
+    </script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const cells = document.querySelectorAll('.cell');
     const botFirstToggle = document.getElementById('botFirst');
+    const singleplay = document.getElementById('singleplay');
     let currentPlayer = 'x';
     let isGameOver = false
 
@@ -51,7 +52,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             alert('Draw!');
             resetBoard();
           }, 100);
-        } else {
+        }
+        else if(singleplay.checked){
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+        }
+        else {
                 currentPlayer = 'o'
             const emptyCells = Array.from(cells).filter(cell => 
                 !cell.classList.contains('x') && !cell.classList.contains('o')
@@ -96,7 +101,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
               assignRandomO(emptyCells)
               }
             }
-
+            if (emptyCells.length === 1) {
+                setTimeout(() => {
+                    alert('Draw!');
+                    resetBoard();
+                  }, 100);
+            }
         }
       }
     };
@@ -123,6 +133,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     };
 
     botFirstToggle.addEventListener('change', () => {
+        resetBoard();
+    });
+
+    singleplay.addEventListener('change', () => {
         resetBoard();
     });
 

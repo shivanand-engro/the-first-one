@@ -107,8 +107,9 @@
 
 .toggle {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            margin: 20px;
+            margin-top: 0px;
         }
         .toggle label {
             margin-right: 10px;
@@ -135,7 +136,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #f00a0a;
+            /* background-color: #f00a0a; */
+            background-color: #e63f3ff5;
             transition: .4s;
             border-radius: 34px;
         }
@@ -153,7 +155,7 @@
             height: 26px;
             text-align: center;
             line-height: 26px;
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             transition: .4s;
             border-radius: 50%;
           }
@@ -165,7 +167,7 @@
           }
 
         .bot-icon {
-            margin-left: 10px;
+            margin-left: -10px;
             font-size: 1.5em;
         } 
 

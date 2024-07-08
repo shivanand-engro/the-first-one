@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const cells = document.querySelectorAll('.cell');
     const botFirstToggle = document.getElementById('botFirst');
     const singleplay = document.getElementById('singleplay');
+    const botIcon = document.getElementById('botIcon');
+    let isEvil = false;
+
     let currentPlayer = 'x';
     let isGameOver = false
 
@@ -133,7 +136,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
     };
 
     botFirstToggle.addEventListener('change', () => {
-        resetBoard();
+        if (isEvil) {
+                botIcon.classList.remove('fa-skull', 'evil-bot');
+                botIcon.classList.add('fa-robot', 'normal-bot');
+            } else {
+                botIcon.classList.remove('fa-robot', 'normal-bot');
+                botIcon.classList.add('fa-skull', 'evil-bot');
+            }
+        isEvil = !isEvil;
+        if(!singleplay.checked)resetBoard();
     });
 
     singleplay.addEventListener('change', () => {

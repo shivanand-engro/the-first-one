@@ -4,44 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toggle Bot Icon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
         }
         .big-icon {
-            font-size: 5em;
+            font-size: 10em;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .normal-bot {
+            color: blue;
+        }
+        .evil-bot {
+            color: red;
         }
     </style>
 </head>
 <body>
     <div id="iconContainer">
-        <i id="botIcon" class="fas fa-robot big-icon"></i>
+        <i id="botIcon" class="fas fa-robot big-icon normal-bot"></i>
     </div>
-    <div id="iconContainer">
-        <i id="botIcon" class="fas fa-skull-crossbones big-icon"></i>
-    </div>
-    <button id="toggleButton">Toggle Bot</button>
+    <button id="toggleButton" class="button">Toggle Bot</button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <script>
         const botIcon = document.getElementById('botIcon');
         const toggleButton = document.getElementById('toggleButton');
-        let isEvil = true;
+        let isEvil = false;
 
         toggleButton.addEventListener('click', function() {
-            console.log(isEvil)
             if (isEvil) {
-                botIcon.classList.remove('fa-skull-crossbones'); // Replace with normal bot icon class
-                botIcon.classList.add('fa-robot');
+                botIcon.classList.remove('fa-skull', 'evil-bot');
+                botIcon.classList.add('fa-robot', 'normal-bot');
             } else {
-                botIcon.classList.remove('fa-robot'); // Replace with evil bot icon class
-                botIcon.classList.add('fa-skull-crossbones');
+                botIcon.classList.remove('fa-robot', 'normal-bot');
+                botIcon.classList.add('fa-skull', 'evil-bot');
             }
-            isEvil = !isEvil; // Toggle state
+            isEvil = !isEvil;
         });
     </script>
 </body>
